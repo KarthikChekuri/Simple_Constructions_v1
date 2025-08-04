@@ -31,8 +31,8 @@ const ContactCTA: React.FC = () => {
     setSuccess(false);
 
     try {
-      // Send form data to Cloudflare Function
-      const response = await fetch('/api/contact', {
+      // Send form data to Formspree
+      const response = await fetch('https://formspree.io/f/mgvzlbbg', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
