@@ -21,7 +21,7 @@ const ContactCTA: React.FC = () => {
 
   const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.message) {
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone || !formData.message) {
       setError('Please fill out all required fields.');
       setSuccess(false);
       return;
@@ -31,8 +31,8 @@ const ContactCTA: React.FC = () => {
     setSuccess(false);
 
     try {
-      // Send form data to Formspree
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      // Send form data to Cloudflare Function
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -41,6 +41,7 @@ const ContactCTA: React.FC = () => {
           firstName: formData.firstName,
           lastName: formData.lastName,
           email: formData.email,
+          phone: formData.phone,
           message: formData.message
         }),
       });
